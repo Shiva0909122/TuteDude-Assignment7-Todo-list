@@ -18,6 +18,17 @@ app.post("/", function (req, res) {
     res.redirect("/");
 });
 
-app.listen(4001, function () {
-    console.log("Server started on port 4001");
+// Route to delete a task by index
+app.delete("/delete/:index", function (req, res) {
+    const index = parseInt(req.params.index);
+    if (index >= 0 && index < items.length) {
+        items.splice(index, 1);
+        res.json({ success: true });
+    } else {
+        res.json({ success: false });
+    }
+});
+
+app.listen(4000, function () {
+    console.log("Server started on port 4000");
 });
