@@ -5,28 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To-Do List</title>
-    <link rel="stylesheet" href="/css/style.css"> <!-- Fixed file path -->
-
-    <script>
-        // Function to handle deletion when checkbox is clicked
-        function deleteTask(index) {
-            fetch(`/delete/${index}`, { method: 'DELETE' })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        // Smooth fade-out effect before removing
-                        let taskElement = document.getElementById(`task-${index}`);
-                        taskElement.style.transition = "opacity 0.5s";
-                        taskElement.style.opacity = "0";
-
-                        setTimeout(() => {
-                            window.location.reload();
-                        }, 500);
-                    }
-                })
-                .catch(error => console.error('Error:', error));
-        }
-    </script>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -35,17 +14,20 @@
     </div>
 
     <div class="box">
-        <% for(var i = 0; i < ejes.length; i++) { %>
-            <div class="item" id="task-<%= i %>">
-                <input type="checkbox" class="taskCheckbox" onclick="deleteTask(<%= i %>)">
-                <p><%= ejes[i] %></p>
-            </div>
-        <% } %>
 
-        <form action="/" method="POST">
-            <input type="text" name="ele1" placeholder="Enter task..." required>
-            <button type="submit">+</button>
-        </form>
+        <% for(var i=0; i< ejes.length; i++) { %>
+            <div class="item">
+                <input type="checkbox" class="taskCheckbox">
+                <p>
+                    <%= ejes[i] %>
+                </p>
+            </div>
+
+            <% } %>
+                <form action="/" method="POST">
+                    <input type="text" name="ele1" placeholder="Enter task...">
+                    <button type="submit">+</button>
+                </form>
     </div>
 </body>
 
