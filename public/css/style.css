@@ -76,6 +76,7 @@ button:hover {
     background-color: purple;
 }
 
-.taskCheckbox:checked+p {
+.taskCheckbox:checked + p {
     text-decoration: line-through;
+    color: gray;
 }
